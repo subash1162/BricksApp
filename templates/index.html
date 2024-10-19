@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bricks</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h1{
+        margin-bottom: 0px;
+      }
+      .main_con {
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: lightgreen;
+        border: 3px solid red;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .con2 .walldiv {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .brickdiv {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .con6 {
+        display: flex;
+        flex-direction: row;
+        margin-bottom:10px;
+      }
+      button{
+        position: relative;
+        left: 120px;
+        top: 10px;
+        height: 25px;
+      }
+      button:hover{
+        border: 2px,solid red;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="main_con">
+      <div class="con1">
+        <h1 style="text-decoration: underline">Calculation of Bricks</h1>
+      </div>
+
+      <form method="POST" action="{% url 'subash' %}">
+        {% csrf_token %}
+        <div class="con2">
+          <h2 style="text-decoration: underline">Enter wall details</h2>
+
+          <div class="con6">
+           
+              <label for="units" style="font-weight: 900; color:red; font-size: 20px;">select units of wall:</label>
+
+              <select name="units" id="units" >
+                <option value="feet">feet</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+              </select>
+           
+          </div>
+
+          <div class="walldiv">
+            <div>
+              <label for="lengthofwall">1.Enter length of the wall:</label>
+              <input
+                type="text"
+                id="Length1"
+                
+                size="10"
+                required
+                name="lengthofwall"
+              />
+            </div>
+            <div>
+              <label for="Breadthofwall">2.Enter Breadth of the wall:</label>
+              <input
+                type="text"
+                id="Breadth1"
+                
+                size="10"
+                required
+                name="Breadthofwall"
+              />
+            </div>
+            <div>
+              <label for="thicknessofwall"
+                >3.Enter thickness of the wall:</label
+              >
+              <input
+                type="text"
+                id="thicknesss1"
+                size="10"
+                required
+                name="thicknessofwall"
+
+
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="con3">
+          <h2 style="text-decoration: underline">
+            Enter the Bricks size details
+          </h2>
+          <div class="brickdiv">
+            <div>
+              <label for="lengthofbrick">1.Enter length of the brick: </label>
+              <input
+                type="text"
+                id="length2"
+                
+                size="10"
+                required
+                name="lengthofbrick"
+              />
+            </div>
+            <div>
+              <label for="breadthofbrick">2.Enter breadth of the brick: </label>
+              <input
+                type="text"
+                id="Breadth2"
+                
+                size="10"
+                required
+                name="breadthofbrick"
+              />
+            </div>
+            <div>
+              <label for="thicknessofbrick"
+                >3.Enter thickness of the brick:
+              </label>
+              <input
+                type="text"
+                id="thickness2"
+                
+                size="10"
+                required
+                name="thicknessofbrick"
+              />
+            </div>
+          </div>
+        </div>
+        <button type="submit" style="background-color: #FFD700; margin-top:10px; ">submit</button>
+      </form>
+
+      <div class="con4">
+        <h2 style="text-decoration: underline">Output:</h2>
+        <div class="outputdiv">
+          <div>
+            <label for="Output">1.Vol. of wall is <span style="text-decoration: underline; font-weight: 900;">{{volume_of_wall}}</span> cu.feets </label>
+          </div>
+          <div>
+            <label for="Output">2.Vol. of brick is <span style="text-decoration: underline; font-weight: 900;">{{volume_of_brick}}</span>cu.feets</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="con5">
+        <h4>By including 10% wastage</h4>
+        <label for="total"
+          ><h3 style="color: blue;">Total numbers of bricks is <span style="text-decoration: underline; color:red">{{total_number_of_bricks}}</span></h3>
+        </label>
+      </div>
+    </div>
+  </body>
+</html>
