@@ -18,32 +18,37 @@ def subash(request):
         lengthofbrick = float(request.POST["lengthofbrick"])
         breadthofbrick = float(request.POST["breadthofbrick"])
         thicknessofbrick = float(request.POST["thicknessofbrick"])
-        units =request.POST["units"]
+        units = request.POST["units"]
+        brickunits = request.POST["brickunits"]
         
         volume_of_wall = lengthofwall * breadthofwall * thicknessofwall
         volume_of_brick = lengthofbrick * breadthofbrick * thicknessofbrick
         
         if units == 'mm':
             volume_of_wall = volume_of_wall/((304.8)**3)
-            volume_of_brick = volume_of_brick/((304.8)**3)
         elif units == 'cm':  
             volume_of_wall = volume_of_wall/((30.48)**3)
-            volume_of_brick = volume_of_brick/((30.48)**3 )
         elif units == 'm':  
             volume_of_wall = volume_of_wall/((0.3048)**3)
-            volume_of_brick = volume_of_brick/((0.3048)**3)
         elif units == 'feet':  
             volume_of_wall = volume_of_wall/((1)**3)
-            volume_of_brick = volume_of_brick/((1)**3)
+           
+            
+        if brickunits == 'mm':
+            volume_of_brick = volume_of_brick/((304.8)**3)
+        elif brickunits == 'cm':  
+            volume_of_brick = volume_of_brick/((30.48)**3 )
+        elif brickunits == 'm':  
+            volume_of_brick = volume_of_brick/((0.3048)**3)
+        elif brickunits == 'feet':  
+            volume_of_brick = volume_of_brick/((1)**3)    
+            
             
         number_of_bricks = volume_of_wall/volume_of_brick
         wastage_of_bricks = (10/100)*number_of_bricks
 
         total_number_of_bricks =int  (number_of_bricks+wastage_of_bricks)
 
-        print(f"volume of wall {volume_of_wall}")
-        print(f"volume of brick {volume_of_brick}")
-        print(f"total numbers of bricks {total_number_of_bricks}")
 
     context = {
         'volume_of_wall':volume_of_wall,
